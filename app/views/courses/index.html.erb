@@ -1,0 +1,11 @@
+<h1>Kurshemsidor</h1>
+
+<ul>
+  <% @courses.each do |course| %>
+    <% if course.url %>
+      <li><a href="<%= course.url %>"><%= course.name %></a></li>
+    <% else %>
+      <li><%= course.name %></li>  
+    <% end %>
+  <% end %>
+</ul>
