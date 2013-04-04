@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 
   def index
-    @courses = Course.where(:year => 2)
+    @courses = Course.all
 
     respond_to do |format|
       format.html
