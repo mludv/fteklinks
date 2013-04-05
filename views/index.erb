@@ -1,0 +1,22 @@
+
+<div class="course-list">
+<h1>Kurshemsidor</h1>
+  <table class="table">
+    <% @courses.each do |course| %>
+      <tr>
+        <% if course.url %>
+          <td>
+            <a href="<%= course.url %>"><%= course.name %>
+
+            <span class="pull-right arrow">&raquo;</span>
+            </a>
+          </td>
+        <% else %>
+          <td class="no-link" data-toggle="tooltip" title="Ingen länk hittades">
+            <%= course.name %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
