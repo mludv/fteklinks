@@ -25,9 +25,15 @@ end
 
 def get_courses(page, info)
   page.search("#WebPartWPQ1").each do |node|
-    node.search("./div/div/table[3]//a").each do |node|
-      course_page = fetch_coursepage(make_absolute(node['href']))
-      save_coursepage(node.text, course_page, info)
+    info[:period] = 0
+    node.search("./div/div/table[3]//td").each do |node|
+      if node.text =~ /läsperiod/i
+        info[:period] = node.text.match(/\d/).to_s.to_i
+      end
+      node.search(".//a").each do |node|
+        course_page = fetch_coursepage(make_absolute(node['href']))
+        save_coursepage(node.text, course_page, info)
+      end
     end
   end
 end
@@ -45,7 +51,8 @@ def save_coursepage(name, url, info)
             :name => name,
             :url => url,
             :year => info[:year],
-            :program => info[:program]
+            :program => info[:program],
+            :period => info[:period]
           )
   end
   

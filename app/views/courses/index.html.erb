@@ -8,12 +8,14 @@
           <td>
             <a href="<%= course.url %>"><%= course.name %>
 
+            <span class="pull-right"><%= course.period %></span>
             <span class="pull-right arrow">&raquo;</span>
             </a>
           </td>
         <% else %>
           <td class="no-link" data-toggle="tooltip" title="Ingen länk hittades">
             <%= course.name %>
+            <span class="pull-right"><%= course.period %></span>
           </td>
         <% end %>
       </tr>
