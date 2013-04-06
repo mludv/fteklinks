@@ -1,0 +1,3 @@
+Denna sidan visar kurshemsidorna för teknisk fysik och teknisk matematik på Chalmers.
+
+Koden för att hämta kurshemsidorna och spara dem i databasen finns i filen _Rakefile_. Webbskrapandet är skrivet i ruby, annars är den mesta html och javascript med en liten Sinatra-server för att leverera kurserna från databasen.

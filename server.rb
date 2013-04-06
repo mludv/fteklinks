@@ -2,9 +2,10 @@ require "sinatra"
 require "sinatra/activerecord"
 require "json"
 
-# Database configuration
+# Configuration
 
 set :database, "sqlite3:///db/db.sqlite3"
+ActiveRecord::Base.include_root_in_json = false
 
 # Model
 
@@ -14,7 +15,7 @@ end
 # Routes
 
 get '/' do
-  @courses = Course.all
+  @json = Course.all.to_json
   erb :index
 end
 

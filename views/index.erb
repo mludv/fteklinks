@@ -1,22 +1,55 @@
 
-<div class="course-list">
-<h1>Kurshemsidor</h1>
-  <table class="table">
-    <% @courses.each do |course| %>
-      <tr>
-        <% if course.url %>
-          <td>
-            <a href="<%= course.url %>"><%= course.name %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fteklinks</title>
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/docs/assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script type="text/javascript" src="vendor/angular/angular.js"></script>
+  <script type="text/javascript" src="scripts.js"></script>
+  <script type="text/javascript">
+      // Bootstrap data from server
+      window.COURSE_DATA = <%= @json %>;
+  </script>
 
+  <!-- Development: livereload server -->
+  <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="course-list" ng-app="fteklinks">
+    <h1>Kurshemsidor</h1>
+
+  
+    <div>
+      År
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </div>
+
+    <table class="table" ng-controller="CourseCtrl">
+      <tr ng-repeat="course in courses">
+        <td>
+          <!-- We have a URL -->
+          <a href="{{course.url}}" ng-show="course.url">
+            {{course.name}}
             <span class="pull-right arrow">&raquo;</span>
-            </a>
-          </td>
-        <% else %>
-          <td class="no-link" data-toggle="tooltip" title="Ingen länk hittades">
-            <%= course.name %>
-          </td>
-        <% end %>
+          </a>
+          <!-- No URL -->
+          <span class="no-link" ng-hide="course.url">
+            {{course.name}}
+          </span>
+        </td>
       </tr>
-    <% end %>
-  </table>
+    </table>
+  </div>
+
 </div>
+
+</body>
+</html>
