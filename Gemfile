@@ -6,3 +6,4 @@ gem "sqlite3"
 gem "rake"
 gem "json"
 gem "mechanize"
+gem 'rack-test'

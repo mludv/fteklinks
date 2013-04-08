@@ -16,8 +16,10 @@
       window.COURSE_DATA = <%= @json %>;
   </script>
 
+  <% if @dev %>
   <!-- Development: livereload server -->
   <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+  <% end %>
 </head>
 <body>
 

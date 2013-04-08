@@ -15,8 +15,19 @@ end
 # Routes
 
 get '/' do
+  @dev = true
   @json = Course.all.to_json
   erb :index
+end
+
+get '/build' do
+  @dev = false
+  filename = 'build.html'
+  @json = Course.all.to_json
+  File.open(filename, 'w') do |f|
+    f.write erb :index
+  end
+  puts 'Created ' + filename
 end
 
 get '/courses.json' do

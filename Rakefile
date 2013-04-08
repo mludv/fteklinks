@@ -9,6 +9,27 @@ require "./server"
 require 'mechanize'
 require 'uri'
 
+
+require 'rack/test'
+
+# Hack to get sinatras methods to work, navigate to an url
+class Builder
+  include Rack::Test::Methods
+
+  def app
+    Sinatra::Application
+  end
+
+  def build
+    get '/build'
+  end
+end
+
+task :build do
+  b = Builder.new
+  b.build()
+end
+
 task :scrape do
 
   # Kurslistan för F
