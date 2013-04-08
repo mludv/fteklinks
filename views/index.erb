@@ -9,6 +9,7 @@
   <script type="text/javascript" src="vendor/bootstrap/js/bootstrap-transition.js"></script>
   <script type="text/javascript" src="vendor/bootstrap/js/bootstrap-collapse.js"></script>
   <script type="text/javascript" src="vendor/angular/angular.js"></script>
+  <script type="text/javascript" src="vendor/angular-local-storage/localStorageModule.js"></script>
   <script type="text/javascript" src="scripts.js"></script>
   <script type="text/javascript">
       // Bootstrap data from server
@@ -22,14 +23,14 @@
 
 <div class="wrapper" ng-app="fteklinks">
 
-  <div class="course-list" ng-controller="CourseCtrl">
+  <div class="course-list">
     <h1>Kurshemsidor</h1>
 
     <div class="settings collapsed" data-toggle="collapse" data-target="#settings">
       <span>Inställningar</span>
     </div>
 
-    <div id="settings" class="collapse out">
+    <div id="settings" class="collapse out" ng-controller="SettingsCtrl">
     <div class="well">
       Läsår
       <ul class="nav nav-pills" >
@@ -70,8 +71,8 @@
     </div>
     </div>
 
-    <table class="table">
-      <tr ng-repeat="course in courses | filter:info">
+    <table class="table" ng-controller="CourseCtrl">
+      <tr ng-repeat="course in courses | filter:settings">
         <td>
           <!-- We have a URL -->
           <a href="{{course.url}}" ng-show="course.url">
