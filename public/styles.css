@@ -6,6 +6,27 @@ body {
   padding: 0 10px;
 }
 
+
+/*
+ Meny
+*********************************/
+
+.settings {
+  margin-bottom: 10px;
+  text-align: right;
+  cursor: pointer;
+}
+
+.settings span:before {
+  color: #555;
+  content:'\25B2';
+}
+.settings.collapsed span:before {
+  content:'\25BC';
+}
+/*
+ Kurslista 
+*********************************/
 .course-list {
   background-color: white;
   padding: 19px 29px 29px;
@@ -19,8 +40,11 @@ body {
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
   box-shadow: 0 1px 2px rgba(0,0,0,.05);
-  text-align: center;
 }
+  
+  .course-list h1 {
+    text-align: center;
+  }
 
   .course-list .no-link {
     color: #ccc;

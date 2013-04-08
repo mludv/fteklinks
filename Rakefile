@@ -12,26 +12,47 @@ require 'uri'
 task :scrape do
 
   # Kurslistan för F
-  url = 'https://student.portal.chalmers.se/sv/chalmersstudier/programinformation/Sidor/SokProgramutbudet.aspx?program_id=879&parsergrp=1'
+  url_f = 'https://student.portal.chalmers.se/sv/chalmersstudier/programinformation/Sidor/SokProgramutbudet.aspx?program_id=879&parsergrp=1'
+  # Kurslistan för TM
+  url_tm = 'https://student.portal.chalmers.se/sv/chalmersstudier/programinformation/Sidor/SokProgramutbudet.aspx?program_id=904&parsergrp=1'
   
-  agent = Mechanize.new
-  page = agent.get(url)
 
+  agent = Mechanize.new
+  page = agent.get(url_f)
+  
   if Course.delete_all()
     puts 'Tog bort alla gamla kurser'
   end
 
+  # F
+  #####
+
   # Årskurs 1
-  get_courses(page, {:year => 1, :program => 'fysik'})
+  get_courses(page, {:year => 1, :program => 'f'})
 
   # Årskurs 2
   page = agent.page.link_with(:text => '2').click
-  get_courses(page, {:year => 2, :program => 'fysik'})
+  get_courses(page, {:year => 2, :program => 'f'})
 
   # Årskurs 3
   page = agent.page.link_with(:text => '3').click
-  get_courses(page, {:year => 3, :program => 'fysik'})
+  get_courses(page, {:year => 3, :program => 'f'})
 
+  # TM
+  ######
+
+  page = agent.get(url_tm)
+  
+  # Årskurs 1
+  get_courses(page, {:year => 1, :program => 'tm'})
+
+  # Årskurs 2
+  page = agent.page.link_with(:text => '2').click
+  get_courses(page, {:year => 2, :program => 'tm'})
+
+  # Årskurs 3
+  page = agent.page.link_with(:text => '3').click
+  get_courses(page, {:year => 3, :program => 'tm'})
 end
 
 # Search the course-list for the links

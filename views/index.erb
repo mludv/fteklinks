@@ -5,6 +5,9 @@
   <title>Fteklinks</title>
   <link rel="stylesheet" type="text/css" href="vendor/bootstrap/docs/assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="vendor/bootstrap/js/bootstrap-transition.js"></script>
+  <script type="text/javascript" src="vendor/bootstrap/js/bootstrap-collapse.js"></script>
   <script type="text/javascript" src="vendor/angular/angular.js"></script>
   <script type="text/javascript" src="scripts.js"></script>
   <script type="text/javascript">
@@ -17,23 +20,58 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div class="wrapper" ng-app="fteklinks">
 
-  <div class="course-list" ng-app="fteklinks">
+  <div class="course-list" ng-controller="CourseCtrl">
     <h1>Kurshemsidor</h1>
 
-  
-    <div>
-      År
-      <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-      </ul>
+    <div class="settings collapsed" data-toggle="collapse" data-target="#settings">
+      <span>Inställningar</span>
     </div>
 
-    <table class="table" ng-controller="CourseCtrl">
-      <tr ng-repeat="course in courses">
+    <div id="settings" class="collapse out">
+    <div class="well">
+      Läsår
+      <ul class="nav nav-pills" >
+        <li ng-class="{active: isCurrent('year', 1)}" 
+            ng-click="set('year', 1)"><a href="">1</a>
+        </li>
+        <li ng-class="{active: isCurrent('year', 2)}" 
+            ng-click="set('year', 2)"><a href="">2</a>
+        </li>
+        <li ng-class="{active: isCurrent('year', 3)}" 
+            ng-click="set('year', 3)"><a href="">3</a>
+        </li>
+      </ul>
+
+      Läsperiod
+      <ul class="nav nav-pills" >
+        <li ng-class="{active: isCurrent('period', 1)}" 
+            ng-click="set('period', 1)"><a href="">1</a>
+        </li>
+        <li ng-class="{active: isCurrent('period', 2)}" 
+            ng-click="set('period', 2)"><a href="">2</a>
+        </li>
+        <li ng-class="{active: isCurrent('period', 3)}" 
+            ng-click="set('period', 3)"><a href="">3</a>
+        </li>
+        <li ng-class="{active: isCurrent('period', 4)}" 
+            ng-click="set('period', 4)"><a href="">4</a>
+        </li>
+      </ul>
+
+      Program
+      <ul class="nav nav-pills" >
+        <li ng-class="{active: isCurrent('program', 'f')}" 
+            ng-click="set('program', 'f')"><a href="">Teknisk fysik</a></li>
+        <li ng-class="{active: isCurrent('program', 'tm')}" 
+            ng-click="set('program', 'tm')"><a href="">Teknisk matematik</a></li>
+      </ul>
+    </div>
+    </div>
+
+    <table class="table">
+      <tr ng-repeat="course in courses | filter:info">
         <td>
           <!-- We have a URL -->
           <a href="{{course.url}}" ng-show="course.url">
