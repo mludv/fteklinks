@@ -1,0 +1,10 @@
+CACHE MANIFEST
+index.html
+styles.css
+scripts.js
+vendor/bootstrap/docs/assets/css/bootstrap.css
+vendor/jquery/jquery.min.js
+vendor/bootstrap/js/bootstrap-transition.js
+vendor/bootstrap/js/bootstrap-collapse.js
+vendor/angular/angular.js
+vendor/angular-local-storage/localStorageModule.js
