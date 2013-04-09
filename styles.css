@@ -56,9 +56,6 @@ body {
     cursor: pointer;
     padding: 0 20px;
   }
-  .course-list td:hover {
-    background-color: #f5f5f5;
-  }
 
   .course-list .arrow {
     display: none;
@@ -69,6 +66,11 @@ body {
     display: block;
   }
 
+
+@media (min-width: 980px) {
+  .course-list td:hover {
+    background-color: #f5f5f5;
+  }
   .course-list a:hover {
     text-decoration: none;
   }
@@ -76,4 +78,6 @@ body {
   .course-list a:hover .arrow {
     display: inline;
   }
+}
+
   
