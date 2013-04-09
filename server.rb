@@ -4,7 +4,11 @@ require "json"
 
 # Configuration
 
-set :database, "sqlite3:///db/db.sqlite3"
+configure :development do
+  set :database, "sqlite3:///db/db.sqlite3"
+end
+
+
 ActiveRecord::Base.include_root_in_json = false
 
 # Model
@@ -22,7 +26,7 @@ end
 
 get '/build' do
   @dev = false
-  filename = 'build.html'
+  filename = 'public/index.html'
   @json = Course.all.to_json
   File.open(filename, 'w') do |f|
     f.write erb :index
